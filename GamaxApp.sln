@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamaxApp", "GamaxApp.csproj", "{CB5ECCEE-9B5D-43F8-AD8D-FBDC870D091B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB5ECCEE-9B5D-43F8-AD8D-FBDC870D091B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB5ECCEE-9B5D-43F8-AD8D-FBDC870D091B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB5ECCEE-9B5D-43F8-AD8D-FBDC870D091B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB5ECCEE-9B5D-43F8-AD8D-FBDC870D091B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {276E73A7-1A01-4A83-AC4A-7931C8669ACC}
+	EndGlobalSection
+EndGlobal
