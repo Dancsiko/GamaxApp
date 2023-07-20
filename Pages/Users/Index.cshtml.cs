@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GamaxApp.Data;
 using GamaxApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GamaxApp.Pages.Users
 {
@@ -20,7 +21,6 @@ namespace GamaxApp.Pages.Users
         }
 
         public IList<User> User { get;set; } = default!;
-
         public async Task OnGetAsync()
         {
             if (_context.User != null)

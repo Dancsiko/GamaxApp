@@ -9,10 +9,6 @@ namespace GamaxApp.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly GamaxAppContext _context;
-
-        //[BindProperty]
-        //public LoginModel Input { get; set; }
-
         public LoginModel(GamaxAppContext context)
         {
             _context = context;
@@ -23,7 +19,7 @@ namespace GamaxApp.Pages.Account
 
         public void OnGet()
         {
-            // Handle GET request
+
         }
 
         public IActionResult OnPost()
@@ -44,7 +40,7 @@ namespace GamaxApp.Pages.Account
             // You can check against a database or any other authentication mechanism
 
             // If the credentials are valid, redirect the user to the home page
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Users/Index");
         }
         private bool VerifyPassword(string hashedPassword, string enteredPassword)
         {
