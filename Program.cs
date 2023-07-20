@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GamaxApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<GamaxAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GamaxAppContext") ?? throw new InvalidOperationException("Connection string 'GamaxAppContext' not found.")));
 
 var app = builder.Build();
 
