@@ -1,5 +1,6 @@
 using GamaxApp.Data;
 using GamaxApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -37,18 +38,13 @@ namespace GamaxApp.Pages.Account
                 return Page();
             }
             LoggedInUser.LoggedUser = user.Email;
-            // Validate the user credentials here
-            // You can check against a database or any other authentication mechanism
 
             // If the credentials are valid, redirect the user to the home page
             return RedirectToPage("/Users/Index");
         }
         private bool VerifyPassword(string hashedPassword, string enteredPassword)
         {
-            // Implement your password verification logic here
-            // This can involve comparing hashed passwords or using a password hashing library like BCrypt
-
-            // Example using simple string comparison (not recommended for production)
+            // Example using simple string comparison could be hashed
             return hashedPassword == enteredPassword;
         }
 

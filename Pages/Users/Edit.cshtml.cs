@@ -25,18 +25,22 @@ namespace GamaxApp.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var canEdit = _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanEdit;
-            if (!canEdit)
-            {
-                return RedirectToPage("./Index");
-            }
-
             if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var user =  await _context.User.FirstOrDefaultAsync(m => m.ID == id);
+            string loggedInUserEmail = LoggedInUser.LoggedUser;
+
+            bool userCanEdit = _context.User.Any(u => u.Email == loggedInUserEmail && u.CanEdit);
+
+            if (!userCanEdit)
+            {
+                ModelState.AddModelError(string.Empty, "User is not authorized.");
+                return RedirectToPage("./Index");
+            }
+
+            var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
             if (user == null)
             {
                 return NotFound();
@@ -77,7 +81,7 @@ namespace GamaxApp.Pages.Users
 
         private bool UserExists(int id)
         {
-          return (_context.User?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.User?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

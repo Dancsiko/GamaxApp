@@ -29,16 +29,44 @@
                 <input asp-for="User.Password" class="form-control" />
                 <span asp-validation-for="User.Password" class="text-danger"></span>
             </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Can add
+                        </th>
+                        <th>
+                            Can edit
+                        </th>
+                        <th>
+                            Can delete
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input asp-for="User.CanAdd" class="form-check" />
+                        </td>
+                        <td>
+                            <input asp-for="User.CanEdit" class="form-check" />
+                        </td>
+                        <td>
+                            <input asp-for="User.CanDelete" class="form-check" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index">Cancel</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

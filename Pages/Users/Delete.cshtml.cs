@@ -21,20 +21,25 @@ namespace GamaxApp.Pages.Users
         }
 
         [BindProperty]
-      public User User { get; set; } = default!;
+        public User User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var canDelete= _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanDelete;
-            if (!canDelete)
-            {
-                return RedirectToPage("./Index");
-            }
-            ModelState.AddModelError(string.Empty, "User is not authorized.");
             if (id == null || _context.User == null)
             {
                 return NotFound();
             }
+
+            string loggedInUserEmail = LoggedInUser.LoggedUser;
+
+            bool userCanDelete = _context.User.Any(u => u.Email == loggedInUserEmail && u.CanDelete);
+
+            if (!userCanDelete)
+            {
+                ModelState.AddModelError(string.Empty, "User is not authorized.");
+                return RedirectToPage("./Index");
+            }
+
 
             var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
 
@@ -42,7 +47,7 @@ namespace GamaxApp.Pages.Users
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 User = user;
             }

@@ -21,15 +21,16 @@ namespace GamaxApp.Pages.Users
 
         public IActionResult OnGet()
         {
-            var canAdd = _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanAdd;
-            if (!canAdd)
+            string loggedInUserEmail = LoggedInUser.LoggedUser;
+
+            bool userCanAdd = _context.User.Any(u => u.Email == loggedInUserEmail && u.CanAdd);
+
+            if (!userCanAdd)
             {
+                ModelState.AddModelError(string.Empty, "User is not authorized.");
                 return RedirectToPage("./Index");
             }
-            //ModelState.AddModelError(string.Empty, "User is not authorized.");
             return Page();
-
-
         }
 
         [BindProperty]

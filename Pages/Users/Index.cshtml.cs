@@ -20,7 +20,7 @@ namespace GamaxApp.Pages.Users
             _context = context;
         }
 
-        public IList<User> User { get;set; } = default!;
+        public IList<User> User { get; set; } = default!;
         public async Task OnGetAsync()
         {
             if (_context.User != null)
