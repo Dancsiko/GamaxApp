@@ -21,17 +21,25 @@ namespace GamaxApp.Pages.Users
 
         public IActionResult OnGet()
         {
+            var canAdd = _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanAdd;
+            if (!canAdd)
+            {
+                return RedirectToPage("./Index");
+            }
+            //ModelState.AddModelError(string.Empty, "User is not authorized.");
             return Page();
+
+
         }
 
         [BindProperty]
         public User User { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.User == null || User == null)
+            if (!ModelState.IsValid || _context.User == null || User == null)
             {
                 return Page();
             }

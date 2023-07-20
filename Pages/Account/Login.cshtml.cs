@@ -36,6 +36,7 @@ namespace GamaxApp.Pages.Account
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 return Page();
             }
+            LoggedInUser.LoggedUser = user.Email;
             // Validate the user credentials here
             // You can check against a database or any other authentication mechanism
 

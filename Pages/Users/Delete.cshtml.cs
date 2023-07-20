@@ -13,6 +13,7 @@ namespace GamaxApp.Pages.Users
     public class DeleteModel : PageModel
     {
         private readonly GamaxApp.Data.GamaxAppContext _context;
+        public bool CanDeleteUsers { get; set; }
 
         public DeleteModel(GamaxApp.Data.GamaxAppContext context)
         {
@@ -24,6 +25,12 @@ namespace GamaxApp.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var canDelete= _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanDelete;
+            if (!canDelete)
+            {
+                return RedirectToPage("./Index");
+            }
+            ModelState.AddModelError(string.Empty, "User is not authorized.");
             if (id == null || _context.User == null)
             {
                 return NotFound();

@@ -25,6 +25,12 @@ namespace GamaxApp.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var canEdit = _context.User.FirstOrDefault(u => u.Email == LoggedInUser.LoggedUser).CanEdit;
+            if (!canEdit)
+            {
+                return RedirectToPage("./Index");
+            }
+
             if (id == null || _context.User == null)
             {
                 return NotFound();
