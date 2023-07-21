@@ -25,10 +25,6 @@ namespace GamaxApp.Pages.Account
 
         public IActionResult OnPost()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
             // Validate the user credentials
             var user = _context.User.FirstOrDefault(u => u.Email == Input.Email);
 
